@@ -1,0 +1,36 @@
+{
+  "name": "d3act",
+  "version": "0.0.1",
+  "description": "A library for creating D3 components, inspired by React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webnicer/d3act.git"
+  },
+  "keywords": [
+    "d3",
+    "components"
+  ],
+  "author": "Jacek Ciolek",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/webnicer/d3act/issues"
+  },
+  "homepage": "https://github.com/webnicer/d3act#readme",
+  "dependencies": {
+    "d3": "^5.5.0",
+    "jsdom": "^11.11.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.5",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-prettier": "^2.6.1",
+    "prettier": "^1.13.5"
+  }
+}
