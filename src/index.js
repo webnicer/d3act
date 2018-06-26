@@ -1,5 +1,4 @@
-const d3 = require('d3');
-const { JSDOM } = require('jsdom');
+import d3 from 'd3';
 
 function render(element, parent) {
   if (typeof element === 'function') {
@@ -9,7 +8,7 @@ function render(element, parent) {
   const { component, props, children } = element;
   const rendered = component(parent, props, children);
 
-  if (rendered.d3act) {
+  if (rendered.d3actor) {
     return render(rendered, parent);
   }
 
@@ -22,19 +21,9 @@ function render(element, parent) {
   return parent;
 }
 
-function serverRender(element) {
-  const {
-    window: { document }
-  } = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html');
-  const container = d3.select(document.body);
-
-  render(element, container);
-  return container.html();
-}
-
 function createElement(component, props, ...children) {
   return {
-    d3act: true,
+    d3actor: true,
     component,
     props,
     children
@@ -56,10 +45,4 @@ function appendOne(parent, tag, selector = tag) {
   return append(parent, [true], tag, selector);
 }
 
-module.exports = {
-  render,
-  serverRender,
-  createElement,
-  append,
-  appendOne
-};
+export { render, createElement, append, appendOne };
