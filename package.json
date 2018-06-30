@@ -27,8 +27,7 @@
   },
   "homepage": "https://github.com/webnicer/d3actor#readme",
   "peerDependencies": {
-    "d3": "^5.0.0",
-    "jsdom": "^11.11.0"
+    "d3": "^5.0.0"
   },
   "dependencies": {},
   "devDependencies": {
