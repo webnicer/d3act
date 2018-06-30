@@ -12,7 +12,9 @@ export default [
       file: pkg.browser,
       name: 'd3actor',
       format: 'umd',
-      globals: ['d3']
+      globals: {
+        d3: 'd3'
+      }
     },
     external: ['d3'],
     plugins: [
