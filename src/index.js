@@ -1,21 +1,46 @@
-import d3 from 'd3';
+import * as d3 from 'd3';
 
-function render(element, parent) {
-  if (typeof element === 'function') {
-    return element(parent);
+function isSelection(maybeSelection) {
+  return maybeSelection instanceof d3.selection;
+}
+
+function isElement(maybeElement) {
+  return (
+    !!maybeElement && typeof maybeElement === 'object' && maybeElement.d3actor
+  );
+}
+
+function isComponent(maybeComponent) {
+  return typeof maybeComponent === 'function';
+}
+
+function render(elementOrComponent, parent) {
+  let rendered = null;
+
+  if (isComponent(elementOrComponent)) {
+    rendered = elementOrComponent(parent, {}, []);
+
+    if (isSelection(rendered)) {
+      return rendered;
+    }
   }
 
-  const { component, props, children } = element;
-  const rendered = component(parent, props, children);
+  if (isElement(elementOrComponent)) {
+    const { component, props, children } = elementOrComponent;
 
-  if (rendered.d3actor) {
+    rendered = isSelection(component)
+      ? component
+      : component(parent, props, children);
+
+    if (isSelection(rendered)) {
+      children.forEach((child) => render(child, rendered));
+
+      return rendered;
+    }
+  }
+
+  if (isElement(rendered)) {
     return render(rendered, parent);
-  }
-
-  if (rendered instanceof d3.selection) {
-    children.forEach((child) => render(child, rendered));
-
-    return rendered;
   }
 
   return parent;
@@ -25,7 +50,7 @@ function createElement(component, props, ...children) {
   return {
     d3actor: true,
     component,
-    props,
+    props: props || {},
     children
   };
 }
