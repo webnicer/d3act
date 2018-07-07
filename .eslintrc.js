@@ -7,5 +7,19 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error'
   },
-  parser: 'babel-eslint'
+  parser: 'babel-eslint',
+  overrides: [
+    {
+      files: ['*.test.js'],
+      env: {
+        jest: true
+      },
+      globals: {
+        document: false
+      },
+      rules: {
+        'no-unused-expressions': 'off'
+      }
+    }
+  ]
 };
