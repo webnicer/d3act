@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+  - 8
+  - 6
+
+cache:
+  directories:
+    - node_modules
+
+stages:
+  - name: test
+  - name: release
+    if: branch = master AND NOT type = pull_request AND repo = webnicer/d3actor
+
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
