@@ -11,6 +11,9 @@ cache:
 before_script:
   - npm run lint
 
+after_success:
+  - npm run codecov
+
 stages:
   - name: test
   - name: release

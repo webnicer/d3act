@@ -12,7 +12,8 @@
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "codecov": "codecov"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "babel-jest": "^23.2.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
+    "codecov": "^3.0.3",
     "d3": "^5.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
@@ -63,12 +65,26 @@
     "analyzeCommits": {
       "preset": "angular",
       "releaseRules": [
-        {"type": "docs", "scope":"README", "release": "patch"},
-        {"type": "refactor", "release": "patch"},
-        {"type": "style", "release": "patch"}
+        {
+          "type": "docs",
+          "scope": "README",
+          "release": "patch"
+        },
+        {
+          "type": "refactor",
+          "release": "patch"
+        },
+        {
+          "type": "style",
+          "release": "patch"
+        }
       ],
       "parserOpts": {
-        "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "MAJOR VERSION CHANGE"]
+        "noteKeywords": [
+          "BREAKING CHANGE",
+          "BREAKING CHANGES",
+          "MAJOR VERSION CHANGE"
+        ]
       }
     }
   }
