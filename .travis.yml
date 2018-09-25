@@ -22,8 +22,7 @@ stages:
 jobs:
   include:
     - stage: release
-      node_js: lts/*
-      script: skip
+      node_js: 8
       deploy:
         provider: script
         skip_cleanup: true
